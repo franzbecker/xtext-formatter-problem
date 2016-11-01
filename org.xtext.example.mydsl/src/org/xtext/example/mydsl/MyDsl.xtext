@@ -1,0 +1,19 @@
+grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
+
+generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
+
+Model:
+	entries+=ListEntry*;
+
+ListEntry:
+	{ListEntry}
+	'-' contents+=TextContent* contents+=Punctuation?;
+
+EntryContent:
+	TextContent | Punctuation;
+
+TextContent:
+	value=ID;
+
+Punctuation:
+	value=('.' | '?');
