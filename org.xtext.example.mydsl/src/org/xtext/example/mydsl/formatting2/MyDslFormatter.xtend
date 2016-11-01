@@ -16,10 +16,10 @@ class MyDslFormatter extends AbstractFormatter2 {
 
 	def dispatch void format(Model model, extension IFormattableDocument document) {
 		model.entries.forEach[format]
+		model.entries.tail.forEach[regionFor.keyword('-').prepend[newLine]]
 	}
 
 	def dispatch void format(ListEntry entry, extension IFormattableDocument document) {
-		entry.regionFor.keyword('-').prepend[newLine]
 		entry.contents.forEach[format]
 	}
 

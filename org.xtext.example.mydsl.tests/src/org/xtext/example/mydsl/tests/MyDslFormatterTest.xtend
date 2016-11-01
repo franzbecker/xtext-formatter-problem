@@ -14,8 +14,34 @@ class MyDslFormatterTest {
 	@Inject extension FormatterTester formatterTester
 
 	@Test
-	def void formatEntry() {
+	def void formatWithNodeModelAndSerializer() {
 		assertFormatted [
+			expectation = '''
+				- a simple entry.
+			'''
+			toBeFormatted = '''
+				-    a   simple   entry   .
+			'''
+		]
+	}
+
+	@Test
+	def void formatWithNodeModel() {
+		assertFormatted [
+			useSerializer = false
+			expectation = '''
+				- a simple entry.
+			'''
+			toBeFormatted = '''
+				-    a   simple   entry   .
+			'''
+		]
+	}
+
+	@Test
+	def void formatWithSerializer() {
+		assertFormatted [
+			useNodeModel = false
 			expectation = '''
 				- a simple entry.
 			'''
